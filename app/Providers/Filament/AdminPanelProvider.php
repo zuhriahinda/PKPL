@@ -31,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->registration()
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
@@ -46,8 +47,7 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-            ])
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -67,7 +67,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugin(
                 BreezyCore::make()
-                ->myProfile()
+                    ->myProfile()
             );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Program;
+use App\Models\PerangkatDaerah;
 use Filament\Widgets\ChartWidget;
 
 class ProgramLineChart extends ChartWidget
@@ -12,7 +12,7 @@ class ProgramLineChart extends ChartWidget
     protected function getData(): array
     {
         // Mengambil data program dengan menghitung jumlah berdasarkan bulan
-        $programs = Program::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+        $programs = PerangkatDaerah::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
             ->groupBy('month')
             ->orderBy('month')
             ->get();

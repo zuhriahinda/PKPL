@@ -3,7 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Status;
-use App\Models\Program;
+use App\Models\PerangkatDaerah;
 use Filament\Widgets\ChartWidget;
 
 class ProgramChart extends ChartWidget
@@ -22,7 +22,7 @@ class ProgramChart extends ChartWidget
 
         foreach ($statuses as $statusId => $statusName) {
             if (array_key_exists($statusName, $statusCounts)) {
-                $statusCounts[$statusName] = Program::where('status_id', $statusId)->count();
+                $statusCounts[$statusName] = PerangkatDaerah::where('status_id', $statusId)->count();
             }
         }
 
@@ -30,23 +30,23 @@ class ProgramChart extends ChartWidget
             'labels' => array_keys($statusCounts), // Status sebagai label pada sumbu X
             'datasets' => [
                 [
-                'label' => 'Jumlah Program',
-                'data' => array_values($statusCounts), // Jumlah untuk masing-masing status
-                'backgroundColor' => [
-                    'rgb(0, 123, 255)',  
-                    'rgb(40, 167, 69)',   
-                    'rgb(255, 193, 7)',   
-                    'rgb(220, 53, 69)',  
-                ],
-                'borderColor' => [
-                    'rgb(0, 123, 255)',   
-                    'rgb(40, 167, 69)',   
-                    'rgb(255, 193, 7)',   
-                    'rgb(220, 53, 69)',    
-                ],
-                'borderWidth' => 2,
-                'barPercentage' => 0.8, // Menyesuaikan lebar bar
-                'categoryPercentage' => 1.0,
+                    'label' => 'Jumlah Program',
+                    'data' => array_values($statusCounts), // Jumlah untuk masing-masing status
+                    'backgroundColor' => [
+                        'rgb(0, 123, 255)',
+                        'rgb(40, 167, 69)',
+                        'rgb(255, 193, 7)',
+                        'rgb(220, 53, 69)',
+                    ],
+                    'borderColor' => [
+                        'rgb(0, 123, 255)',
+                        'rgb(40, 167, 69)',
+                        'rgb(255, 193, 7)',
+                        'rgb(220, 53, 69)',
+                    ],
+                    'borderWidth' => 2,
+                    'barPercentage' => 0.8, // Menyesuaikan lebar bar
+                    'categoryPercentage' => 1.0,
                 ],
             ],
         ];

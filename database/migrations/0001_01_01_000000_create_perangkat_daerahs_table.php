@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('perangkat_daerahs', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->text('keterangan')->nullable();
+            $table->unsignedBigInteger('status_id')->default(1);;
+            $table->foreign('status_id')->references('id')->on('status')->onDelete('cascade');
             $table->timestamps();
         });
     }
